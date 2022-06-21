@@ -1,0 +1,32 @@
+---
+title: "billboard"
+output: html_document
+date: '2022-06-21'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, warning=FALSE}
+# Cleaning commands and counting number of distinct artists
+# Watch out. Some artists appear differently at different times. See 'N Sync.
+x <- wiki_hot_100s |>
+  as_tibble() |>
+  mutate(year = as.numeric(year), no = as.numeric(no))
+
+x |>
+  group_by(artist) |>
+  summarize(freq = n()) |>
+  arrange(desc(freq)) |>
+  filter(freq == 1) |>
+  summarize(once = n())
+
+```
+`r x$artist[1]` appears the most!
+
+`r nrow(x)` artists appear only once!
+
+Which year features the most distinct artists?
+
+Plot the number of unique artists each year. Is it increasing or decreasing?
