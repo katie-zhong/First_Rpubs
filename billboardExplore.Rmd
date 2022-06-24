@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r, warning=FALSE}
 # Cleaning commands and counting number of distinct artists
 # Watch out. Some artists appear differently at different times. See 'N Sync.
+# (Because of this nuance, this answer can be considered 'wrong'! There are no right answers; we just document what we do and why.)
+
 x <- wiki_hot_100s |>
   as_tibble() |>
   mutate(year = as.numeric(year), no = as.numeric(no))
@@ -28,5 +30,15 @@ x |>
 `r nrow(x)` artists appear only once!
 
 Which year features the most distinct artists?
+
+```{r}
+x |>
+  group_by(year) |>
+  summarize(freq = n()) |>
+  arrange(desc(freq)) |>
+  filter(freq == 1) |>
+  summarize(once = n())
+```
+
 
 Plot the number of unique artists each year. Is it increasing or decreasing?

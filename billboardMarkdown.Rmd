@@ -1,0 +1,19 @@
+---
+title: "billboardMarkdown"
+output: html_document
+date: '2022-06-24'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(billboard)
+```
+
+```{r Data Tidying}
+wiki_hot_100s |>
+  drop_na() |>
+  select()
+```
+
+#Which song was on the Top 100s for the longest?
