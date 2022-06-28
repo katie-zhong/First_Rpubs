@@ -40,5 +40,14 @@ x |>
   summarize(once = n())
 ```
 
+How many unique artists are on the Top 100s each year?
+```{r}
+x |>
+  summarize(freq = n()) |>
+  filter()
+```
+
 
 Plot the number of unique artists each year. Is it increasing or decreasing?
+
+EXTRA: Which song was on the Top 100s for the longest?
